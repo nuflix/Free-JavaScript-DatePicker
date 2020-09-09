@@ -1,0 +1,27 @@
+.datePickerDay{
+     width:13%;
+    background-color:lightgray;
+    border:solid 1px;
+    text-align: center;
+    cursor: pointer; 
+}
+
+.emptyDay{
+    visibility: hidden;
+}
+
+.datePickerDays{
+    display:flex;
+    flex-direction: column;
+    width:100%;
+}
+
+.daysRow{
+    display:flex;
+    justify-content: flex-start;
+}
+
+#datePicker{
+     width:200px;
+    
+}
