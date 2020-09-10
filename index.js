@@ -1,6 +1,6 @@
 let isItFirstMakeItDatePicker=false;
 
-function makeItDatePicker(el, curDate){
+function makeItCalendar(el, curDate){
 
     if(!isItFirstMakeItDatePicker){
         document.body.addEventListener("click", datePickerClick);
@@ -52,9 +52,16 @@ helperHTML+="</div>";
         if(daysInMonth(currentDate.split(",")[0], currentDate.split(",")[1])+i<31){
             /* console.log(daysInMonth(currentDate.split(",")[0], currentDate.split(",")[1])); */
 /*     document.getElementsByClassName("datePickerDay")[30+currDay-i].innerHTML=""; */
-    document.getElementsByClassName("datePickerDay")[30+currDay-i].classList.add("emptyDay");
+    el.getElementsByClassName("datePickerDay")[30+currDay-i].classList.add("emptyDay");
         }
     }
+
+/*     let today = new Date();
+    today = today.getDate();
+    today--;
+    el.getElementsByClassName("datePickerDay")[today+currDay].classList.add("today"); */
+
+    setToday(el, currDay);
 
 }
 
@@ -76,7 +83,7 @@ function datePickerClick(){
             monthHelper=12;
             yearHelper--;
         }
-        makeItDatePicker(event.target.parentElement.parentElement.parentElement, (monthHelper + "," + yearHelper));
+        makeItCalendar(event.target.parentElement.parentElement.parentElement, (monthHelper + "," + yearHelper));
     }else if(event.target.classList.contains("datePickerRight")){
         dateHelper=event.target.parentElement.getElementsByClassName("datePickerMonth")[0].innerHTML;
         monthHelper=dateHelper.split(",")[0];
@@ -87,6 +94,25 @@ function datePickerClick(){
             monthHelper=1;
             yearHelper++;
         }
-        makeItDatePicker(event.target.parentElement.parentElement.parentElement, (monthHelper + "," + yearHelper));
+        makeItCalendar(event.target.parentElement.parentElement.parentElement, (monthHelper + "," + yearHelper));
     }
+}
+
+function makeItDatePicker(el, curDate){
+el.classList.add("datePicker");
+makeItCalendar(el, curDate);
+}
+
+function setToday(el, currDay){
+
+    let today = new Date();
+    if((el.getElementsByClassName("datePickerMonth")[0].innerHTML.split(",")[0].toString()===(today.getMonth()+1).toString()) && (el.getElementsByClassName("datePickerMonth")[0].innerHTML.split(",")[1].toString()===today.getFullYear().toString())){
+    today = today.getDate();
+    today--;
+    el.getElementsByClassName("datePickerDay")[parseInt(today)+parseInt(currDay)].classList.add("today");
+
+    }else if(el.getElementsByClassName("today")[0]){
+        el.getElementsByClassName("today")[0].classList.remove("today");
+    }
+
 }
