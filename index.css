@@ -29,3 +29,7 @@
 .today{
     background-color:white;
 }
+
+.datePickerPickedDate{
+    background-color: aqua;
+}

@@ -95,6 +95,11 @@ function datePickerClick(){
             yearHelper++;
         }
         makeItCalendar(event.target.parentElement.parentElement.parentElement, (monthHelper + "," + yearHelper));
+    }else if(event.target.classList.contains("datePickerDay")){
+    if(event.target.parentElement.parentElement.getElementsByClassName("datePickerPickedDate").length>0){
+        event.target.parentElement.parentElement.getElementsByClassName("datePickerPickedDate")[0].classList.remove("datePickerPickedDate");
+    }
+    event.target.classList.add("datePickerPickedDate");
     }
 }
 
